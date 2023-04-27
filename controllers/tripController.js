@@ -12,7 +12,7 @@ export const createTrip = async (req, res) => {
         registeringUser.findOne({ _id: clientId ? clientId : client }, (err, data) => {
             if (data) {
                 const trip = new registeringTrip({
-                    tripName, clientName: data.firstName, fee, companyName: data.companyName,
+                    tripName, clientName: data.firstName + " " + data.lastName, fee, companyName: data.companyName,
                     percentage, description, destinationTo, destinationFrom,
                     startDate, endDate, aircraftType, selectAircraft, hotelType, airlineTravel, clientId, uuid: uuid,
                     role: "trip", status: "pending", crewStatus: "pending", payment: "pending", documentStatus: "pending", documentClientStatus: "pending", date: Date.now()
@@ -508,7 +508,7 @@ export const statusApproveExpenseById = async (req, res) => {
     try {
         console.log(req.body, "========>values")
         registeringTrip.updateOne({ "crewExpenses._id": req.body.id },
-            { $set: { 'crewExpenses.$.expenseStatus': "Aproved" } }, { new: true }, (err, data) => {
+            { $set: { 'crewExpenses.$.expenseStatus': "Approved" } }, { new: true }, (err, data) => {
                 if (data) {
                     res.json({ message: "Expense status updated", data: data })
                 }

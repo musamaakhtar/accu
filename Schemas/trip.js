@@ -176,7 +176,7 @@ const trip = new mongoose.Schema({
             },
             expenseStatus: {
                 type: String,
-                default: "Aprove"
+                default: "Approve"
             }
         }
 

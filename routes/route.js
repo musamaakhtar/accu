@@ -2,17 +2,21 @@
 import express from 'express'
 import { createAircraft, deleteAircraft, getAllAircrafts, updateAircraft } from '../controllers/aircraftController.js';
 import { register, login, getAllUsers, updateUser, getUsersById, updatePassword, forgetPassword, forgetLink, getCrewByKey, getClientByKey, deleteUser , getClientById} from "../controllers/authController.js";
-import { addBankDetails, getAllDetails, bankDetailById, updateBankStatus, updateBankDetails } from '../controllers/bankDetails.js';
+import { addBankDetails, getAllDetails, bankDetailById, updateBankStatus, updateBankDetails , deleteBankById } from '../controllers/bankDetails.js';
 import { createClient, deleteClient, getAllClients, getClientByemail, updateClientByMail } from "../controllers/clientController.js";
 import { createCrew, deleteCrew, getAllCrews, getCrewByName, deleteCrewById, getCrewByemail, updateCrewByMail, mailToCrewMember } from '../controllers/crewController.js';
-import { addDocument, getAllDocuments } from '../controllers/documentController.js';
+import { addDocument, getAllDocuments , getDocumentByTripId } from '../controllers/documentController.js';
 import { getAllPayments, paymentByClientId, paymentController } from '../controllers/paymentController.js';
+import {addSystemSetting ,  getSettingById} from "../controllers/systemSetting.js"
 import {
      addCrewSignTrips,addCrewToTripsByClientId, deleteTripCrewMemberByCrewId, deleteCrewExpenseById, addCrewToTrips, addingTripExpenses, addTripWithCrew, createTrip, deleteTrip, getTripById,
      statusApproveExpenseById, getAllTrips, getCrewExpense, TripsByClientId, TripsByCrewId, updateTripClientDocumentStatus, updateTripDocumentStatus, updateTripStatus, updateTripDetails
 } from '../controllers/tripController.js';
 import {addInvoiceSetting , getInvoiceById} from "../controllers/invoiceController.js"
 const router = express.Router();
+// System settings
+router.post("/addSystemSetting",addSystemSetting)
+router.post("/getSettingById",getSettingById)
 // Inovice Setting
 router.post("/addInvoiceSetting",addInvoiceSetting)
 router.post('/getInvoiceById', getInvoiceById)
@@ -50,6 +54,8 @@ router.get('/getAllDetails', getAllDetails);
 router.post("/getBankDetailById", bankDetailById)
 router.put('/updateBankStatus', updateBankStatus);
 router.put('/updateBankDetails', updateBankDetails);
+router.post('/deleteBankById', deleteBankById);
+
 //aircraft
 router.post('/addAircraftDetails', createAircraft);
 router.get('/getAllAircrafts', getAllAircrafts);
@@ -79,7 +85,7 @@ router.put('/statusApproveExpenseById', statusApproveExpenseById);
 //document
 router.post('/addDocument', addDocument);
 router.get('/getAllDocuments', getAllDocuments);
-
+router.post('/getDocumentByTripId', getDocumentByTripId);
 //strip
 router.post('/stripPayment', paymentController);
 router.post('/getPaymentByClientId', paymentByClientId);

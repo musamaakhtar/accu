@@ -2,10 +2,10 @@ import addingBankDetails from "../Schemas/bankDetails.js";
 
 export const addBankDetails = async (req, res) => {
     try {
-        const { title, bank, accountNumber, iban, bic, address, bankId } = req.body;
+        const { title, bank, accountNumber, iban, bic, address, bankId  , bankPic} = req.body;
         console.log(req.body);
         const bankDetails = new addingBankDetails({
-            title, bank, accountNumber, iban, bic, address, bankId
+            title, bank, accountNumber, iban, bic, address, bankId , bankPic
         });
         bankDetails.save();
         res.json({ message: "Details added", data: req.body });
@@ -86,3 +86,21 @@ export const updateBankDetails = async (req, res) => {
     }
 
 };
+export const deleteBankById = async (req, res) => {
+    try {
+        console.log(req.body, "=========>id")
+        const id = req.body.id;
+        addingBankDetails.findByIdAndRemove((id), (err, data) => {
+            if (data) {
+                console.log(data)
+                res.json({ message: "Bank  deleted" })
+            }
+            else {
+                res.json({ message: "Bank not exist" })
+            }
+        })
+    }
+    catch (err) {
+        res.json({ message: "Server Error" });
+    }
+}

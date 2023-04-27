@@ -21,6 +21,9 @@ const bankDetail= new mongoose.Schema({
     bic: {
         type: String,
         required: true
+    }, 
+    bankPic: {
+        type: String,
     },
 
     address: {
