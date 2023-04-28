@@ -10,8 +10,12 @@ const document = new mongoose.Schema({
         required: true
     },
 
-    title:{type: String,   
+    title:{
+    type: String,   
     required: true
+    },
+    type:{
+    type: String,   
     },
     tripId:{
     type: String,   
