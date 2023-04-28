@@ -40,12 +40,12 @@ export const getAllDocuments = async (req, res) => {
 };
 export const getDocumentByTripId = async (req, res) => {
     try {
-        const data = await addingDocument.findById(req.body.tripId)
-        res.json({
-            message: "single document found",
-            data: data
-        });
-    }
+        const tripId = req.body.tripId;
+        addingDocument.find({ tripId: tripId }, (err, data) => {
+                res.json({ data: data });
+            }
+            
+        )}
     catch (err) {
         res.json({ message: "Server Error" });
     }

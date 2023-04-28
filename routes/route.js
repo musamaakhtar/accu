@@ -7,7 +7,7 @@ import { createClient, deleteClient, getAllClients, getClientByemail, updateClie
 import { createCrew, deleteCrew, getAllCrews, getCrewByName, deleteCrewById, getCrewByemail, updateCrewByMail, mailToCrewMember } from '../controllers/crewController.js';
 import { addDocument, getAllDocuments , getDocumentByTripId } from '../controllers/documentController.js';
 import { getAllPayments, paymentByClientId, paymentController } from '../controllers/paymentController.js';
-import {addSystemSetting ,  getSettingById} from "../controllers/systemSetting.js"
+import {addSystemSetting ,  getSettingById , updateSetting , getAllSettings} from "../controllers/systemSetting.js"
 import {
      addCrewSignTrips,addCrewToTripsByClientId, deleteTripCrewMemberByCrewId, deleteCrewExpenseById, addCrewToTrips, addingTripExpenses, addTripWithCrew, createTrip, deleteTrip, getTripById,
      statusApproveExpenseById, getAllTrips, getCrewExpense, TripsByClientId, TripsByCrewId, updateTripClientDocumentStatus, updateTripDocumentStatus, updateTripStatus, updateTripDetails
@@ -17,6 +17,8 @@ const router = express.Router();
 // System settings
 router.post("/addSystemSetting",addSystemSetting)
 router.post("/getSettingById",getSettingById)
+router.post("/updateSetting",updateSetting)
+router.get("/getAllSettings",getAllSettings)
 // Inovice Setting
 router.post("/addInvoiceSetting",addInvoiceSetting)
 router.post('/getInvoiceById', getInvoiceById)
