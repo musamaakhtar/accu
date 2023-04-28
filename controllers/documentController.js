@@ -7,10 +7,12 @@ export const addDocument = async (req, res) => {
         const tripId = req.body.tripId;
         const documentPic = req.body.documentPic;
         const title = req.body.title;
+        const type = req.body.type;
         const document = new addingDocument({
             documentPic,
             role: "document",
             title ,
+            type,
             tripId 
 
         });
