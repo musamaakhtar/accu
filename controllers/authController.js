@@ -127,8 +127,7 @@ export const updateUser = async (req, res) => {
             { $set: req.body },
             { new: true }, (err, data) => {
                 if (data) {
-
-                    res.json({ message: "user updated " })
+                    res.json({ message: "user updated" })
                     console.log(data, "============>new data")
                 }
                 else {

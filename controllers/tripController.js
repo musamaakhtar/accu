@@ -508,7 +508,7 @@ export const statusApproveExpenseById = async (req, res) => {
     try {
         console.log(req.body, "========>values")
         registeringTrip.updateOne({ "crewExpenses._id": req.body.id },
-            { $set: { 'crewExpenses.$.expenseStatus': "Approved" } }, { new: true }, (err, data) => {
+            { $set: { 'crewExpenses.$.expenseStatus': req.body.expenseStatus } }, { new: true }, (err, data) => {
                 if (data) {
                     res.json({ message: "Expense status updated", data: data })
                 }
