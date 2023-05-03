@@ -374,8 +374,7 @@ export const addingTripExpenses = async (req, res) => {
     try {
         console.log(req.body)
         const tripId = req.body.tripId;
-        const { title, merchant, amount, date } = req.body.values;
-        const expensePic = req.body.expensePic;
+        const { title, merchant, amount, date ,expensePic } = req.body.values;
         const crewId = req.body.crewId
         registeringUser.findOne({ _id: crewId }, (err, data) => {
             console.log(req.body);
