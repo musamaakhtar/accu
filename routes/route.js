@@ -1,6 +1,6 @@
 
 import express from 'express'
-import { createAircraft, deleteAircraft, getAllAircrafts, updateAircraft } from '../controllers/aircraftController.js';
+import { createAircraft, deleteAircraft, getAllAircrafts, updateAircraft , getAllAircraftsById } from '../controllers/aircraftController.js';
 import { register, login, getAllUsers, updateUser, getUsersById, updatePassword, forgetPassword, forgetLink, getCrewByKey, getClientByKey, deleteUser , getClientById} from "../controllers/authController.js";
 import { addBankDetails, getAllDetails, bankDetailById, updateBankStatus, updateBankDetails , deleteBankById } from '../controllers/bankDetails.js';
 import { createClient, deleteClient, getAllClients, getClientByemail, updateClientByMail } from "../controllers/clientController.js";
@@ -16,9 +16,9 @@ import {addInvoiceSetting , getInvoiceById} from "../controllers/invoiceControll
 const router = express.Router();
 // System settings
 router.post("/addSystemSetting",addSystemSetting)
-router.post("/getSettingById",getSettingById)
 router.post("/updateSetting",updateSetting)
 router.get("/getAllSettings",getAllSettings)
+router.post("/getSettingById",getSettingById)
 // Inovice Setting
 router.post("/addInvoiceSetting",addInvoiceSetting)
 router.post('/getInvoiceById', getInvoiceById)
@@ -60,6 +60,7 @@ router.post('/deleteBankById', deleteBankById);
 
 //aircraft
 router.post('/addAircraftDetails', createAircraft);
+router.post('/getAllAircraftsById', getAllAircraftsById);
 router.get('/getAllAircrafts', getAllAircrafts);
 router.post('/deleteAircraftById', deleteAircraft);
 router.put('/updateAircraft', updateAircraft);

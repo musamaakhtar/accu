@@ -156,8 +156,6 @@ export const TripsByCrewId = async (req, res) => {
     try {
         console.log(req.body, "----------->crew Id")
         const crewId = req.body.crewId;
-
-
         registeringTrip.find({ "crewMembers.crewId": crewId }, (err, data) => {
             if (data) {
                 console.log(data)

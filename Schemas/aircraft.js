@@ -14,16 +14,16 @@ const aircraft = new mongoose.Schema({
        
     },
     type: {
-        type: String,
-        
+        type: String,  
     },
     aircraftPic: {
         type: String,
-       
     },
     role: {
         type: String,
-       
+    },
+    aircraftid: {
+        type: String,
     }
 
 })

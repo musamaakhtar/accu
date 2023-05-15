@@ -6,22 +6,18 @@ export const createAircraft = async (req, res) => {
     try {
 
         console.log(req.body);
-        const { aircraftOwner, aircraftOperator, type, 
-            registrationNumber} = req.body;
-        const {aircraftPic}=req.body;
+        const { aircraftOwner, aircraftOperator, type,
+            registrationNumber, aircraftid } = req.body;
+        const { aircraftPic } = req.body;
 
-        
+
         const aircraft = new registeringAircraft({
             aircraftOwner, aircraftOperator, type,
             registrationNumber, aircraftPic,
-            role:"aircraft"
+            role: "aircraft", aircraftid
         });
         aircraft.save();
-
         res.json({ message: "Aircraft Details added", data: req.body });
-
-
-
     }
     catch (err) {
         console.log("error in adding aircraft details", err);
@@ -33,6 +29,23 @@ export const getAllAircrafts = async (req, res) => {
     try {
         const data = await registeringAircraft.find({})
         res.json(data);
+    }
+    catch (err) {
+        res.json({ message: "Server Error" });
+    }
+}
+
+export const getAllAircraftsById = async (req, res) => {
+    const id = req.body.aircraftid; 
+
+    console.log(id , "byidair")
+    console.log(req.body , "byidair")
+    try {
+        const data = await registeringAircraft.find({"aircraftid":id})
+        res.json({
+            message: "single data found",
+            data: data
+        });
     }
     catch (err) {
         res.json({ message: "Server Error" });
