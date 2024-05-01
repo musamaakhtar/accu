@@ -28,13 +28,13 @@ const reg = new mongoose.Schema({
     },
     phoneNumber: {
         type: String,
-       
+
     },
-    adress:{
-     type: String,
+    adress: {
+        type: String,
     },
-    designation:{
-     type: String,
+    designation: {
+        type: String,
     },
     lastName: {
         type: String,
@@ -44,16 +44,16 @@ const reg = new mongoose.Schema({
     },
     aboutMe: {
         type: String,
-    } ,
+    },
     bankName: {
         type: String,
-    } ,
+    },
     bankAdress: {
         type: String,
     },
     accountNumber: {
         type: String,
-    } ,
+    },
     institute: {
         type: String,
     },
@@ -66,37 +66,37 @@ const reg = new mongoose.Schema({
     passportPic: {
         type: String,
     },
-    iban:{
-        type:String,
+    iban: {
+        type: String,
     },
     country: {
         type: String,
     },
-    profilePic:{
+    profilePic: {
         type: String,
     },
     comapnyAdress: {
         type: String,
     },
-    companyName:{
+    companyName: {
         type: String,
     },
     registrationNumber: {
         type: String,
     },
-    VatNumber:{
+    VatNumber: {
         type: String,
     },
-    bank:{
-        type: String,
-    },  
-    percentage:{
+    bank: {
         type: String,
     },
-    fee:{
+    percentage: {
+        type: String,
+    },
+    fee: {
         type: String,
     }
-    
+
 })
 
 const registeringUser = mongoose.model('user', reg)

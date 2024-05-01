@@ -6,7 +6,7 @@ import bcrypt from "bcrypt"
 export const createClient = async (req, res) => {
     console.log(req.body);
     try {
-        const { firstName, lastName, phoneNumber, email, registrationNumber , companyName , role} = req.body;
+        const { firstName, lastName, phoneNumber, email, registrationNumber, companyName, role } = req.body;
         console.log(req.body, "=====>body of req")
         registeringUser.findOne({ email: email }, (err, data) => {
             if (data) {
@@ -14,7 +14,7 @@ export const createClient = async (req, res) => {
                 res.json({ message: "Email already exist" });
             }
             else {
-                const register = new registeringUser({ firstName, lastName, email, phoneNumber, role, registrationNumber , companyName});
+                const register = new registeringUser({ firstName, lastName, email, phoneNumber, role, registrationNumber, companyName });
                 register.save();
                 console.log(register, "this one sending data");
                 res.status(200).json({ message: "user registered", data: req.body });
@@ -25,7 +25,7 @@ export const createClient = async (req, res) => {
             auth: {
                 user: "musamaakhtar68@gmail.com",
                 pass: "qngjaktczeafekee",
-        },
+            },
         });
         var mailOptions = {
             from: "connect@kallendly.com",
@@ -45,7 +45,7 @@ export const createClient = async (req, res) => {
 
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
-                console.log(error ,"this one is our error message");
+                console.log(error, "this one is our error message");
                 res.json({ message: "Email not Sent" });
             } else {
                 console.log("Email sent: " + info.response);
@@ -69,17 +69,17 @@ export const getAllClients = async (req, res) => {
 }
 export const deleteClient = async (req, res) => {
     try {
-        console.log(req.body,"=========>id")
+        console.log(req.body, "=========>id")
         const id = req.body.e;
-        registeringClient.findByIdAndRemove( (id) , (err, data) => {
-                if (data) {
-                    console.log(data)
-                    res.json({ message: "client deleted" })
-                }
-                else {
-                    res.json({ message: "client does not exist" })
-                }
-            })
+        registeringClient.findByIdAndRemove((id), (err, data) => {
+            if (data) {
+                console.log(data)
+                res.json({ message: "client deleted" })
+            }
+            else {
+                res.json({ message: "client does not exist" })
+            }
+        })
     }
     catch (err) {
         res.json({ message: "Server Error" });
@@ -99,15 +99,15 @@ export const getClientByemail = async (req, res) => {
 }
 export const updateClientByMail = async (req, res) => {
     try {
-        console.log(req.body,"======> updateClientByMail")
-        const { firstName, lastName, phoneNumber, email, password, role , companyName , registrationNumber } = req.body;
-        const user = await registeringUser.findOneAndUpdate({ email: email }, { $set: { firstName, lastName,companyName, phoneNumber, role, registrationNumber } }, { new: true });
+        console.log(req.body, "======> updateClientByMail")
+        const { firstName, lastName, phoneNumber, email, password, role, companyName, registrationNumber } = req.body;
+        const user = await registeringUser.findOneAndUpdate({ email: email }, { $set: { firstName, lastName, companyName, phoneNumber, role, registrationNumber } }, { new: true });
         if (user) {
             const salt = bcrypt.genSaltSync(10);
             const hashPassword = bcrypt.hashSync(password, salt);
             user.hashPassword = hashPassword;
             await user.save();
-            console.log(user ,  "1234567890")
+            console.log(user, "1234567890")
             res.json({ message: "user updated" });
         } else {
             res.json({ message: "user does not exist" });
